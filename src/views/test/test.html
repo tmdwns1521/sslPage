@@ -1,44 +1,163 @@
-<!DOCTYPE html>
-<html >
-<head>
-    <meta charset="UTF-8">
-    <title></title>
+<!DOCTYPE HTML>
+<!--
+	Paradigm Shift by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Paradigm Shift by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" href="main.css" />
+	</head>
+	<body class="is-preload">
 
-    <script>
-        function clickBtn(){
-            // BOM의 navigator객체의 하위에 geolocation객체가 새로 추가되었음.
-            window.navigator.geolocation.getCurrentPosition( function(position){ //OK
-                    const lat = position.coords.latitude;
-                    const lng = position.coords.longitude;
+		<!-- Wrapper -->
+			<div id="wrapper">
+                <section>
+                    <div class="content" style="text-align: center;">
+                    <div id="check1">
+                        <strong>*중요공지사항*</strong>
+                        <br></br>
+                        <div style="padding-bottom: 30px">
+                            5.1절 노동절 금융노조 출석체크를 위하여 본인의 
+                            위치정보 및 개인정보를 수집하고 있습니다.
+                            위치정보 및 개인정보 수집에 
+                            비동의 및 집회장소외 다른위치에서 
+                            출석체크할 경우 <br><strong>출석 불인정</strong> 됨을 알려드립니다.
+                        </div>
+                        <div class="sto">
+                            <strong>
+                                *수집된 정보는 5.1절 출석체크 용도로만 사용합니다.
+                                위치정보 및 개인정보 제공
+                            </strong>
+                        </div>
+                        <fieldset>
+                            <input type="radio" id="ok1" name="radio1" value="ok1">
+                            <label for="ok1">동의</label>
+                            <input type="radio" id="no1" name="radio1" value="no1">
+                            <label for="no1">미동의</label>
+                        </fieldset>
+                    </div>
+                    <div id="check2">
+                        <div style="padding-bottom: 20px">
+                            <strong style="padding-bottom: 20px">* 공지사항 *</strong>
+                            <ul>
+                                <li>
+                                    체크는 5.1절 해당일 2번 하셔야 하며,
+                                    <br>날짜 및 시간제한이 있습니다. 
+                                    <ol>
+                                        <li>5월1일 12:30~14:30 : 집회참석</li>
+                                        <li>5월1일 15:15~16:15 : 집회마감</li>
+                                    </ol>
+                                </ul>
+                                <li>
+                                    핸드폰1대당 1번씩만 등록가능
+                                </li>
+                                <li>
+                                    핸드폰1대로 여러 사람 등록불가
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="sto">
+                            <strong>
+                                *공지사항을 모두 확인하였습니까?
+                            </strong>
+                        </div>
+                        <fieldset>
+                            <input type="radio" id="ok2" name="radio2" value="ok2">
+                            <label for="ok2">확인</label>
+                            <input type="radio" id="no2" name="radio2" value="no2">
+                            <label for="no2">미확인</label>
+                        </fieldset>
+                    </div>
+                    
+                    <div id="check3">
+                        <strong>
+                            출석체크를 위한 <br>개인정보를
+                            입력하여 주십시요.
+                        </strong>
+                        <form class="form1">
+                            <div class="fieldo">
+                                <div id="bottom15">
+                                    <select name="team" id="team">
+                                        <option value="0">소속</option>
+                                        <option value="1">경남은행지부</option>
+                                        <option value="2">광주은행지부</option>
+                                        <option value="3">국민은행지부</option>
+                                        <option value="4">금융결제원지부</option>
+                                        <option value="5">금융안전지부</option>
+                                        <option value="6">금융연수원지부</option>
+                                        <option value="7">기술보증기금지부</option>
+                                        <option value="8">기업은행지부</option>
+                                        <option value="9">농협지부</option>
+                                        <option value="10">대구은행지부</option>
+                                        <option value="11">부동산원지부</option>
+                                        <option value="12">부산은행지부</option>
+                                        <option value="13">산림조합중앙회지부</option>
+                                        <option value="14">산업은행지부</option>
+                                        <option value="15">서울외국환중개지부</option>
+                                        <option value="16">수출입은행지부</option>
+                                        <option value="17">수협중앙회지부</option>
+                                        <option value="18">신용보증기금지부</option>
+                                        <option value="19">신한은행지부</option>
+                                        <option value="20">신협중앙회지부</option>
+                                        <option value="21">씨티은행지부</option>
+                                        <option value="22">우리신용정보지부</option>
+                                        <option value="23">우리에프아이에스지부</option>
+                                        <option value="24">우리은행지부</option>
+                                        <option value="25">우리카드지부</option>
+                                        <option value="26">은행연합회지부</option>
+                                        <option value="27">자산관리공사지부</option>
+                                        <option value="28">전북은행지부</option>
+                                        <option value="29">제일은행지부</option>
+                                        <option value="30">제주은행지부</option>
+                                        <option value="31">주택금융공사지부</option>
+                                        <option value="32">주택도시보증공사지부</option>
+                                        <option value="33">코스콤지부</option>
+                                        <option value="34">평가데이터지부</option>
+                                        <option value="35">하나은행지부</option>
+                                        <option value="36">한국자금중개지부</option>
+                                        <option value="37">IBK시스템지부</option>
+                                        <option value="38">JB우리캐피탈지부</option>
+                                        <option value="39">KB데이타시스템지부</option>
+                                    </select>
+                                </div>
+                                <div class="field half" id="bottom15">
+                                    <input type="name" name="name" id="name" placeholder="직원(사원) 성명" />
+                                </div>
+                                <div class="field half" id="bottom15">
+                                    <input type="employeenum" name="employeenum" id="employeenum" placeholder="직원(사원) 번호" />
+                                </div>
+                                <div class="field half" id="bottom15">
+                                    <input type="tel" name="tel" id="tel" placeholder="핸드폰번호" />
+                                </div>
+                                <fieldset>
+                                    <input type="radio" id="me" name="relation" value="me">
+                                    <label for="me">본인</label>
+                                    <input type="radio" id="family" name="relation" value="family">
+                                    <label for="family">가족</label>
+                                </fieldset>
+                            </div>
+                            <ul class="actions">
+                                <li><input type="submit" value="체크 완료" class="button primary" /></li>
+                            </ul>
+                        </form>
+                    </div>  
+                    </div>
+                </section>
+			</div>
 
-                    document.getElementById('target').innerHTML=lat+", "+lng;
-            },
-            function(error){ //error
-                switch(error.code){
-                    case error.PERMISSION_DENIED:
-                        var str = "사용자 거부";
-                        break;
-                    case error.POSITION_UNAVAILABLE:
-                        str="지리정보 없음";
-                        break;
-                    case error.TIMEOUT:
-                        str="시간 초과";
-                        break;
-                    case error.UNKNOWN_ERROR:
-                        str="알수없는 에러";
-                        break;
-                }
-                document.getElementById('target').innerHTML=str;
-            });
-        }
+		<!-- Scripts -->
+            <script type="module" src="jquery.min.js"></script>
+            <script type="module" src="jquery.scrolly.min.js"></script>
+            <script type="module" src="browser.min.js"></script>
+            <script type="module" src="breakpoints.min.js"></script>
+            <script type="module" src="util.js"></script>
+            <script type="module" src="main.js"></script>
 
-    </script>
-
-</head>
-<body>
-    <button onclick="clickBtn()">my location</button>
-    <h3 id="target">location</h3>
-
-
-</body>
+	</body>
 </html>
