@@ -9,7 +9,7 @@ function success({ coords, timestamp }) {
 
 function error() {
 	alert('미동의시 출석체크를 할수 없습니다.');
-	getUserLocation();
+	location.reload()
   }
 
 function getUserLocation() {
