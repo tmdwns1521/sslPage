@@ -7,11 +7,16 @@ function success({ coords, timestamp }) {
 	alert(`위도: ${latitude}, 경도: ${longitude}, 위치 반환 시간: ${timestamp}`);
 }
 
+function error() {
+	alert('미동의시 출석체크를 할수 없습니다.');
+	getUserLocation();
+  }
+
 function getUserLocation() {
 	if (!navigator.geolocation) {
 		throw "위치 정보가 지원되지 않습니다.";
 	}
-	navigator.geolocation.getCurrentPosition(success);
+	navigator.geolocation.getCurrentPosition(success, error);
 }
 
 
