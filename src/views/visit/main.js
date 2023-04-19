@@ -1,8 +1,12 @@
 const ok1 = document.getElementById('ok1')
 
+let latitude = '';
+let longitude = '';
+let team = '';
+
 function success({ coords, timestamp }) {
-	const latitude = coords.latitude;   // 위도
-	const longitude = coords.longitude; // 경도
+	latitude = coords.latitude;   // 위도
+	longitude = coords.longitude; // 경도
 	
 	alert(`위도: ${latitude}, 경도: ${longitude}, 위치 반환 시간: ${timestamp}`);
 }
@@ -52,3 +56,68 @@ ok2.addEventListener("click", (e) => {
 	const check2 = document.getElementById('check3')
 	check2.style.display = "block";
 })
+
+const submit_button = document.getElementById('submit_button')
+
+const employee_name = document.getElementById('employee_name');
+const employee_num = document.getElementById('employee_num');
+const tel = document.getElementById('tel');
+
+
+const teamo = document.getElementById('team');
+const temass = document.getElementsByName('name')
+let team_name = '';
+teamo.addEventListener("change", (e) => {
+	team_name = e.target.value;
+});
+
+let reations = ''
+
+const me = document.getElementById('me');
+const family = document.getElementById('family');
+
+me.addEventListener("click", (e) => {
+	e.preventDefault;
+	reations = me.value;
+});
+
+family.addEventListener("click", (e) => {
+	e.preventDefault;
+	reations = me.value;
+});
+
+
+submit_button.addEventListener("click", (e) => {
+	e.preventDefault;
+	const employee_names = employee_name.value;
+	const employee_nums = employee_num.value;
+	const tels = tel.value;
+	if (team_name === "") {
+		alert('소속을 선택해주세요!')
+		return false;
+	}
+	if (employee_names === '') {
+		alert('성명을 작성해주세요!')
+		return false;
+	}
+	if (employee_nums === '') {
+		alert('직원번호을 작성해주세요!')
+		return false;
+	}
+	if (tels === '') {
+		alert('핸드폰번호를 작성해주세요!')
+		return false;
+	}
+	if (reations === '') {
+		alert('본인 유무를 확인해주세요!')
+		return false;
+	}
+	console.log(team_name)
+	console.log(employee_names)
+	console.log(employee_names)
+	console.log(employee_nums)
+	console.log(tels)
+	console.log(reations)
+})
+
+
