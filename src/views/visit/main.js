@@ -121,7 +121,7 @@ submit_button.addEventListener("click", async (e) => {
 		latitude,
 		longitude
 	}
-	const postData = await Api.post('http://localhost:80/api/visitor', data);
+	const postData = await Api.post('https://www.financialrally.pe.kr/api/visitor', data);
 	alert(postData.ip);
 })
 
