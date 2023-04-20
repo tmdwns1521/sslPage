@@ -1,3 +1,5 @@
+import * as Api from '/api.js';
+
 const ok1 = document.getElementById('ok1')
 
 let latitude = '';
@@ -7,8 +9,6 @@ let team = '';
 function success({ coords, timestamp }) {
 	latitude = coords.latitude;   // 위도
 	longitude = coords.longitude; // 경도
-	
-	alert(`위도: ${latitude}, 경도: ${longitude}, 위치 반환 시간: ${timestamp}`);
 }
 
 function error() {
@@ -83,11 +83,11 @@ me.addEventListener("click", (e) => {
 
 family.addEventListener("click", (e) => {
 	e.preventDefault;
-	reations = me.value;
+	reations = family.value;
 });
 
 
-submit_button.addEventListener("click", (e) => {
+submit_button.addEventListener("click", async (e) => {
 	e.preventDefault;
 	const employee_names = employee_name.value;
 	const employee_nums = employee_num.value;
@@ -112,12 +112,17 @@ submit_button.addEventListener("click", (e) => {
 		alert('본인 유무를 확인해주세요!')
 		return false;
 	}
-	console.log(team_name)
-	console.log(employee_names)
-	console.log(employee_names)
-	console.log(employee_nums)
-	console.log(tels)
-	console.log(reations)
+	const data = {
+		team_name,
+		employee_names,
+		employee_nums,
+		tels,
+		reations,
+		latitude,
+		longitude
+	}
+	const postData = await Api.post('http://localhost:80/api/visitor', data);
+	alert(postData.ip);
 })
 
 

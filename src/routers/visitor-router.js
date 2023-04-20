@@ -1,41 +1,27 @@
 import { Router } from 'express';
-import { visitorService } from '../services/index.js';
-import bcrypt from 'bcrypt';
+import axios from 'axios';
+import http from 'http';
+
+// import { visitorService } from '../services/index.js';
+// import bcrypt from 'bcrypt';
 
 const visitorRouter = Router();
 
 // 회원가입 api (아래는 /register이지만, 실제로는 /api/register로 요청해야 함.)
 visitorRouter.post('/visitor', async (req, res, next) => {
+	const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+
 	try {
+		const { team_name, employee_names, employee_nums, tels, reations, latitude, longitude } = req.body;
 
-		// req (request)의 body 에서 데이터 가져오기
-		const ip = req.body.ip;
-		const referrer = req.body.referrer;
-		const browser = req.body.browser;
-		const os = req.body.os;
-
-
-		// 위 데이터를 유저 db에 추가하기
-		const newVisitor = await visitorService.visitorAdd({
-			ip,
-			referrer,
-			browser,
-			os
+		const address = await axios.get(`https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?x=${longitude}&y=${latitude}`, {
+			headers : {
+				"Authorization": "KakaoAK 838a3cef132ebc7e79bb9d570ab26d7b"
+			}
 		});
+		const address_data = (address.data.documents[0].address_name);
 
-		res.status(201).json(newVisitor);
-	} catch (error) {
-		next(error);
-	}
-});
-
-visitorRouter.get('/visitor', async (req, res, next) => {
-	try {
-
-		// 위 데이터를 유저 db에 추가하기
-		const Visitors = await visitorService.visitors();
-
-		res.status(201).json(Visitors);
+		res.status(201).json({ip, address_data, team_name, employee_names, employee_nums, tels, reations });
 	} catch (error) {
 		next(error);
 	}
