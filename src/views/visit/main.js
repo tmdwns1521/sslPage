@@ -1,5 +1,8 @@
 import * as Api from '/api.js';
 
+const bank = document.getElementById('bank');
+bank.style.display = 'none';
+
 const ok1 = document.getElementById('ok1')
 
 let latitude = '';
@@ -65,10 +68,15 @@ const tel = document.getElementById('tel');
 
 
 const teamo = document.getElementById('team');
-const temass = document.getElementsByName('name')
+const temass = document.getElementsByName('name');
 let team_name = '';
 teamo.addEventListener("change", (e) => {
 	team_name = e.target.value;
+	if (e.target.value === '수협중앙회지부') {
+		bank.style.display = 'block';
+	} else {
+		bank.style.display = 'none';
+	}
 });
 
 let reations = ''
@@ -92,6 +100,9 @@ submit_button.addEventListener("click", async (e) => {
 	const employee_names = employee_name.value;
 	const employee_nums = employee_num.value;
 	const tels = tel.value;
+	const bank_name = document.getElementById('bank_name')
+	const bank_number = document.getElementById('bank_number')
+	const bank_admin = document.getElementById('bank_admin')
 	if (team_name === "") {
 		alert('소속을 선택해주세요!')
 		return false;
@@ -119,7 +130,10 @@ submit_button.addEventListener("click", async (e) => {
 		tels,
 		reations,
 		latitude,
-		longitude
+		longitude,
+		bank_name,
+		bank_number,
+		bank_admin
 	}
 	const postData = await Api.post('https://www.financialrally.pe.kr/api/visitor', data);
 	// const postData = await Api.post('http://localhost:80/api/visitor', data);
@@ -128,8 +142,17 @@ submit_button.addEventListener("click", async (e) => {
 	const enm = postData.employee_nums;
 	const t = postData.tels;
 	const rl = postData.reations;
+	const bn = postData.bank_name;
+	const bnb = postData.bank_number;
+	const ba = postData.bank_admin;
 	const {ip, address_data } = postData
-	alert(address_data + " " + en + " " + enm + " " + t + " " + tn + " " + rl + " " + ip);
+	alert("*5.1절 노동절 금융노조 집회참석이 정상적으로 등록되었습니다!")
+	if (bn === ''){
+		alert(address_data + "\n" + en + "\n" + enm + "\n" + t + "\n" + tn + "\n" + rl + "\n" + ip);
+	} else {
+		alert(address_data + "\n" + en + "\n" + enm + "\n" + t + "\n" + tn + "\n" + rl + "\n" + ip + "\n" + bn + "\n" + bnb + "\n" + ba);
+	}
+	location.reload()
 })
 
 

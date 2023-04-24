@@ -29,10 +29,8 @@
                             <br>위치정보 및 개인정보 제공
                         </div>
                         <fieldset>
-                            <input type="radio" id="ok1" name="radio1" value="ok1">
-                            <label for="ok1">동의</label>
-                            <input type="radio" id="no1" name="radio1" value="no1">
-                            <label for="no1">미동의</label>
+                            <input type="button" id="ok1" name="radio1" value="동의">
+                            <input type="button" id="no1" name="radio1" value="미동의">
                         </fieldset>
                     </div>
                     <div id="check2">
@@ -62,10 +60,8 @@
                             *공지사항을 모두 확인하였습니까?
                         </div>
                         <fieldset>
-                            <input type="radio" id="ok2" name="radio2" value="ok2">
-                            <label for="ok2">확인</label>
-                            <input type="radio" id="no2" name="radio2" value="no2">
-                            <label for="no2">미확인</label>
+                            <input type="button" id="ok2" name="radio2" value="확인">
+                            <input type="button" id="no2" name="radio2" value="미확인">
                         </fieldset>
                     </div>
                     
@@ -127,6 +123,18 @@
                                 </div>
                                 <div class="field half" id="bottom15">
                                     <input type="tel" name="tel" id="tel" placeholder="핸드폰번호(-제외)" />
+                                </div>
+                                <div id="bank">
+                                    <strong><해당지부 참가비는 실비지급 합니다.></strong>
+                                    <div class="field half" id="bottom15">
+                                        <input type="name" name="bank_name" id="bank_name" placeholder="은행명" />
+                                    </div>
+                                    <div class="field half" id="bottom15">
+                                        <input type="tel" name="bank_number" id="bank_number" placeholder="계좌번호" />
+                                    </div>
+                                    <div class="field half" id="bottom15">
+                                        <input type="name" name="bank_admin" id="bank_admin" placeholder="예금주" />
+                                    </div>
                                 </div>
                                 <fieldset>
                                     <input type="radio" id="me" name="relations" value="본인">

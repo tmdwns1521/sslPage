@@ -12,7 +12,7 @@ visitorRouter.post('/visitor', async (req, res, next) => {
 	const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
 	try {
-		const { team_name, employee_names, employee_nums, tels, reations, latitude, longitude } = req.body;
+		const { team_name, employee_names, employee_nums, tels, reations, latitude, longitude, bank_name, bank_number, bank_admin } = req.body;
 
 		const address = await axios.get(`https://dapi.kakao.com/v2/local/geo/coord2address.json?input_coord=WGS84&x=${longitude}&y=${latitude}`, {
 			headers : {
@@ -21,7 +21,7 @@ visitorRouter.post('/visitor', async (req, res, next) => {
 		});
 		const address_data = (address.data.documents[0].road_address.address_name);
 
-		res.status(201).json({ip, address_data, team_name, employee_names, employee_nums, tels, reations });
+		res.status(201).json({ip, address_data, team_name, employee_names, employee_nums, tels, reations, bank_name, bank_number, bank_admin });
 	} catch (error) {
 		next(error);
 	}
