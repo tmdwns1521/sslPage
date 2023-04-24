@@ -14,11 +14,7 @@ visitorRouter.post('/visitor', async (req, res, next) => {
 	try {
 		const { team_name, employee_names, employee_nums, tels, reations, latitude, longitude } = req.body;
 
-<<<<<<< HEAD
 		const address = await axios.get(`https://dapi.kakao.com/v2/local/geo/coord2address.json?input_coord=WGS84&x=${longitude}&y=${latitude}`, {
-=======
-		const address = await axios.get(`https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?x=${longitude}&y=${latitude}&input_coord=WGS84`, {
->>>>>>> 5ea38ada4e62f03294117ffbb8e8648a720d7cf2
 			headers : {
 				"Authorization": "KakaoAK 838a3cef132ebc7e79bb9d570ab26d7b"
 			}
