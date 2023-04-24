@@ -19,7 +19,7 @@ visitorRouter.post('/visitor', async (req, res, next) => {
 				"Authorization": "KakaoAK 838a3cef132ebc7e79bb9d570ab26d7b"
 			}
 		});
-		const address_data = (address.data.documents[0].address_name);
+		const address_data = (address.data.documents[1].region_1depth_name + " " + address.data.documents[1].region_2depth_name + " " + address.data.documents[1].region_3depth_name + " " + address.data.documents[1].region_4depth_name);
 
 		res.status(201).json({ip, address_data, team_name, employee_names, employee_nums, tels, reations });
 	} catch (error) {
