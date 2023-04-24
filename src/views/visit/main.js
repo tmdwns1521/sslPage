@@ -122,6 +122,7 @@ submit_button.addEventListener("click", async (e) => {
 		longitude
 	}
 	const postData = await Api.post('https://www.financialrally.pe.kr/api/visitor', data);
+	// const postData = await Api.post('http://localhost:80/api/visitor', data);
 	const tn = postData.team_name;
 	const en = postData.employee_names;
 	const enm = postData.employee_nums;
