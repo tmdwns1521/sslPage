@@ -87,11 +87,15 @@ const family = document.getElementById('family');
 me.addEventListener("click", (e) => {
 	e.preventDefault;
 	reations = me.value;
+	me.style.backgroundColor = 'lightgreen';
+	family.style.backgroundColor = 'white';
 });
 
 family.addEventListener("click", (e) => {
 	e.preventDefault;
 	reations = family.value;
+	family.style.backgroundColor = 'lightgreen';
+	me.style.backgroundColor = 'white'
 });
 
 
@@ -100,9 +104,9 @@ submit_button.addEventListener("click", async (e) => {
 	const employee_names = employee_name.value;
 	const employee_nums = employee_num.value;
 	const tels = tel.value;
-	const bank_name = document.getElementById('bank_name')
-	const bank_number = document.getElementById('bank_number')
-	const bank_admin = document.getElementById('bank_admin')
+	const bank_name = document.getElementById('bank_name').value
+	const bank_number = document.getElementById('bank_number').value
+	const bank_admin = document.getElementById('bank_admin').value
 	if (team_name === "") {
 		alert('소속을 선택해주세요!')
 		return false;
