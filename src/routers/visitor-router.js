@@ -1,6 +1,19 @@
 import { Router } from 'express';
 import axios from 'axios';
 import http from 'http';
+import mysql from 'mysql2';
+
+const conn = {  // mysql 접속 설정
+    host: 'financialral.sldb.iwinv.net',
+    port: '3306',
+    user: 'root',
+    password: '3QYdhT5B71qv',
+    database: 'database'
+};
+
+let connection = mysql.createConnection(conn); // DB 커넥션 생성
+connection.connect();   // DB 접속
+
 
 // import { visitorService } from '../services/index.js';
 // import bcrypt from 'bcrypt';
@@ -19,7 +32,22 @@ visitorRouter.post('/visitor', async (req, res, next) => {
 				"Authorization": "KakaoAK 838a3cef132ebc7e79bb9d570ab26d7b"
 			}
 		});
+		if (bank_name === '') {
+			let bank_name = ' ';
+			let bank_number = ' ';
+			let bank_admin =' ';
+		}
 		const address_data = (address.data.documents[0].address.address_name);
+
+		let sql = `INSERT INTO 'attendance' ('ip', 'address_data', 'team_name', 'employee_names', 'employee_nums', 'tels', 'reations', 'bank_name', 'bank_number', 'bank_admin') VALUES (${ip}, ${address_data}, ${team_name}, ${employee_names}, ${employee_nums}, ${tels}, ${reations}, ${bank_name}, ${bank_number}, ${bank_admin});`;
+
+		console.log(sql);
+		connection.query(sql, function (err, results, fields) {
+			if (err) {
+				console.log(err);
+			}
+			console.log(results);
+		});
 
 		res.status(201).json({ip, address_data, team_name, employee_names, employee_nums, tels, reations, bank_name, bank_number, bank_admin });
 	} catch (error) {
