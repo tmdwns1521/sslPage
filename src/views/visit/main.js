@@ -165,12 +165,13 @@ submit_button.addEventListener("click", async (e) => {
 	const bnb = postData.bank_number;
 	const ba = postData.bank_admin;
 	const {ip, address_data } = postData
+	let confirm_data;
 	if (bn === ''){
-		alert(address_data + "\n" + en + "\n" + enm + "\n" + t + "\n" + tn + "\n" + rl + "\n" + ip);
+		confirm_data = confirm(address_data + "\n" + en + "\n" + enm + "\n" + t + "\n" + tn + "\n" + rl + "\n" + ip);
 	} else {
-		alert(address_data + "\n" + en + "\n" + enm + "\n" + t + "\n" + tn + "\n" + rl + "\n" + ip + "\n" + bn + "\n" + bnb + "\n" + ba);
+		confirm_data = confirm(address_data + "\n" + en + "\n" + enm + "\n" + t + "\n" + tn + "\n" + rl + "\n" + ip + "\n" + bn + "\n" + bnb + "\n" + ba);
 	}
-	alert("*5.1절 노동절 금융노조 집회참석이 정상적으로 등록되었습니다!")
+	if (confirm_data === true) { alert("*5.1절 노동절 금융노조 집회참석이 정상적으로 등록되었습니다!") }
 	// location.reload()
 })
 
