@@ -156,6 +156,10 @@ submit_button.addEventListener("click", async (e) => {
 	}
 	// const postData = await Api.post('https://www.financialrally.pe.kr/api/visitor', data);
 	const postData = await Api.post('http://localhost:80/api/visitor', data);
+	if (postData.result === false) {
+		alert('이미 등록된 휴대폰입니다.')
+		return false;
+	}
 	const tn = postData.team_name;
 	const en = postData.employee_names;
 	const enm = postData.employee_nums;
