@@ -53,6 +53,10 @@ ol, ul {
 	padding-bottom: 30px;
 }
 
+#check1 {
+	display: none;
+}
+
 #check2 {
 	display: none;
 }

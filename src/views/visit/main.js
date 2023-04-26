@@ -26,6 +26,14 @@ function getUserLocation() {
 	navigator.geolocation.getCurrentPosition(success, error);
 }
 
+ok0.addEventListener("click", (e) => {
+	e.preventDefault;
+	const check0 = document.getElementById('check0')
+	check0.style.display = "none";
+	getUserLocation();
+	const check1 = document.getElementById('check1')
+	check1.style.display = "block";
+})
 
 ok1.addEventListener("click", (e) => {
 	e.preventDefault;
@@ -34,6 +42,13 @@ ok1.addEventListener("click", (e) => {
 	getUserLocation();
 	const check2 = document.getElementById('check2')
 	check2.style.display = "block";
+})
+
+const no0 = document.getElementById('no0')
+
+no0.addEventListener("click", (e) => {
+	e.preventDefault;
+	alert('출석체크를 위해 확인이 필요합니다.')
 })
 
 const no1 = document.getElementById('no1')
@@ -72,7 +87,7 @@ const temass = document.getElementsByName('name');
 let team_name = '';
 teamo.addEventListener("change", (e) => {
 	team_name = e.target.value;
-	if (e.target.value === '수협중앙회지부') {
+	if (e.target.value === '수협중앙회지부' || e.target.value === '신한은행지부') {
 		bank.style.display = 'block';
 	} else {
 		bank.style.display = 'none';
@@ -150,13 +165,13 @@ submit_button.addEventListener("click", async (e) => {
 	const bnb = postData.bank_number;
 	const ba = postData.bank_admin;
 	const {ip, address_data } = postData
-	alert("*5.1절 노동절 금융노조 집회참석이 정상적으로 등록되었습니다!")
 	if (bn === ''){
 		alert(address_data + "\n" + en + "\n" + enm + "\n" + t + "\n" + tn + "\n" + rl + "\n" + ip);
 	} else {
 		alert(address_data + "\n" + en + "\n" + enm + "\n" + t + "\n" + tn + "\n" + rl + "\n" + ip + "\n" + bn + "\n" + bnb + "\n" + ba);
 	}
-	location.reload()
+	alert("*5.1절 노동절 금융노조 집회참석이 정상적으로 등록되었습니다!")
+	// location.reload()
 })
 
 
