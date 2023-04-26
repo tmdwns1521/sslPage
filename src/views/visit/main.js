@@ -160,15 +160,15 @@ submit_button.addEventListener("click", async (e) => {
 		alert('이미 등록된 휴대폰입니다.')
 		return false;
 	}
-	const tn = postData.team_name;
-	const en = postData.employee_names;
-	const enm = postData.employee_nums;
-	const t = postData.tels;
-	const rl = postData.reations;
-	const bn = postData.bank_name;
-	const bnb = postData.bank_number;
-	const ba = postData.bank_admin;
-	const {ip, address_data } = postData
+	const tn = postData.result.team_name;
+	const en = postData.result.employee_names;
+	const enm = postData.result.employee_nums;
+	const t = postData.result.tels;
+	const rl = postData.result.reations;
+	const bn = postData.result.bank_name;
+	const bnb = postData.result.bank_number;
+	const ba = postData.result.bank_admin;
+	const {ip, address_data } = postData.result;
 	let confirm_data;
 	if (bn === ''){
 		confirm_data = confirm(address_data + "\n" + en + "\n" + enm + "\n" + t + "\n" + tn + "\n" + rl + "\n" + ip);
