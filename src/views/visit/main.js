@@ -4,6 +4,7 @@ const bank = document.getElementById('bank');
 bank.style.display = 'none';
 
 const ok1 = document.getElementById('ok1')
+const ok0 = document.getElementById('ok0')
 
 let latitude = '';
 let longitude = '';
@@ -30,7 +31,6 @@ ok0.addEventListener("click", (e) => {
 	e.preventDefault;
 	const check0 = document.getElementById('check0')
 	check0.style.display = "none";
-	getUserLocation();
 	const check1 = document.getElementById('check1')
 	check1.style.display = "block";
 })
