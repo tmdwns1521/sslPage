@@ -154,21 +154,24 @@ submit_button.addEventListener("click", async (e) => {
 		bank_number,
 		bank_admin
 	}
-	const postData = await Api.post('https://www.financialrally.pe.kr/api/visitor', data);
-	// const postData = await Api.post('http://localhost:80/api/visitor', data);
+	// const postData = await Api.post('https://www.financialrally.pe.kr/api/visitor', data);
+	const postData = await Api.post('http://localhost:80/api/visitor', data);
 	if (postData.result === false) {
-		alert('이미 등록된 휴대폰입니다.')
+		alert('이미 등록된 기기입니다.');
+		return false;
+	} else if (postData.result === 'no') {
+		alert('집회 출석 시간이 아닙니다.');
 		return false;
 	}
-	const tn = postData.result.team_name;
-	const en = postData.result.employee_names;
-	const enm = postData.result.employee_nums;
-	const t = postData.result.tels;
-	const rl = postData.result.reations;
-	const bn = postData.result.bank_name;
-	const bnb = postData.result.bank_number;
-	const ba = postData.result.bank_admin;
-	const {ip, address_data } = postData.result;
+	const tn = postData.data.team_name;
+	const en = postData.data.employee_names;
+	const enm = postData.data.employee_nums;
+	const t = postData.data.tels;
+	const rl = postData.data.reations;
+	const bn = postData.data.bank_name;
+	const bnb = postData.data.bank_number;
+	const ba = postData.data.bank_admin;
+	const {ip, address_data } = postData.data;
 	let confirm_data;
 	if (bn === ''){
 		confirm_data = confirm(address_data + "\n" + en + "\n" + enm + "\n" + t + "\n" + tn + "\n" + rl + "\n" + ip);
