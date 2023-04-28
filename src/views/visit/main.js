@@ -155,6 +155,7 @@ submit_button.addEventListener("click", async (e) => {
 		bank_admin
 	}
 	const postData = await Api.post('https://www.financialrally.pe.kr/api/visitor', data);
+	console.log(postData);
 	// const postData = await Api.post('http://localhost:80/api/visitor', data);
 	if (postData.result === false) {
 		alert('이미 등록된 기기입니다.');
