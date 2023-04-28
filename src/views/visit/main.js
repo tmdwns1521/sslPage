@@ -155,7 +155,6 @@ submit_button.addEventListener("click", async (e) => {
 		bank_admin
 	}
 	const postData = await Api.post('https://www.financialrally.pe.kr/api/visitor', data);
-	console.log(postData);
 	// const postData = await Api.post('http://localhost:80/api/visitor', data);
 	if (postData.result === false) {
 		alert('이미 등록된 기기입니다.');
@@ -179,7 +178,26 @@ submit_button.addEventListener("click", async (e) => {
 	} else {
 		confirm_data = confirm(address_data + "\n" + en + "\n" + enm + "\n" + t + "\n" + tn + "\n" + rl + "\n" + ip + "\n" + bn + "\n" + bnb + "\n" + ba);
 	}
-	if (confirm_data === true) { alert("*5.1절 노동절 금융노조 집회참석이 정상적으로 등록되었습니다!") }
+	// console.log(confirm_data);
+	if (confirm_data === true) {
+		// console.log('hiahfie');
+		const newData = {
+			ip,
+			address_data,
+			team_name: tn,
+			employee_names: en,
+			employee_nums: enm,
+			tels: t,
+			reations: rl,
+			bank_name: bn,
+			bank_number: bnb,
+			bank_admin: ba,
+		}
+		const postDataOk = await Api.post('https://www.financialrally.pe.kr/api/visitorOk', newData);
+		// const postDataOk = await Api.post('http://localhost:80/api/visitorOk', newData);
+		const ment = postDataOk.result;
+		alert(ment);
+	}
 	// location.reload()
 })
 
