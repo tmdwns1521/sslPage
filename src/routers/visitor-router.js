@@ -35,6 +35,14 @@ const visitorRouter = Router();
 
 // 회원가입 api (아래는 /register이지만, 실제로는 /api/register로 요청해야 함.)
 visitorRouter.post('/visitor', async (req, res, next) => {
+	const today = new Date();   
+
+	const hours = today.getHours(); // 시
+	const minutes = today.getMinutes();  // 분
+	const seconds = today.getSeconds();  // 초
+
+	console.log(hours + ':' + minutes + ':' + seconds);
+
 	const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 	const is_ip = await mysqlRead.query('SELECT * FROM attendance WHERE ip = ?', ip)
 	if (is_ip[0].length > 0) {
