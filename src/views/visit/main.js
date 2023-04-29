@@ -160,7 +160,7 @@ submit_button.addEventListener("click", async (e) => {
 		alert('이미 등록된 기기입니다.');
 		return false;
 	} else if (postData.result === 'no') {
-		alert('집회 출석 시간이 아닙니다.');
+		alert('집회 출석 시간이 아니거나, GPS가 꺼져 있는 상태입니다.');
 		return false;
 	}
 	const tn = postData.data.team_name;
