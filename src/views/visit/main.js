@@ -197,8 +197,8 @@ submit_button.addEventListener("click", async (e) => {
 		// const postDataOk = await Api.post('http://localhost:80/api/visitorOk', newData);
 		const ment = postDataOk.result;
 		alert(ment);
+		location.reload()
 	}
-	// location.reload()
 })
 
 
