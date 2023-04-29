@@ -38,8 +38,10 @@ visitorRouter.post('/visitor', async (req, res, next) => {
 	const today = new Date();
 	const twelve = 12;
 	const forteen = 14;
-	const sixteen = 15;
-	const seventeen = 16;
+	const sixteen = 17;
+	const seventeen = 24;
+	// const sixteen = 15;
+	// const seventeen = 16;
 	const thirty = 30
 	const twenty = 20
 
@@ -64,7 +66,8 @@ visitorRouter.post('/visitor', async (req, res, next) => {
 		}
 		const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 		const is_ip = await mysqlRead.query('SELECT * FROM attendance WHERE ip = ?', ip)
-		if (is_ip[0].length > 0) {
+		// if (is_ip[0].length > 0) {
+		if (is_ip[0].length >= 0) {
 			return res.status(201).json({"result" : false});
 		}else {
 			try {
