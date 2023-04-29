@@ -96,7 +96,7 @@ visitorRouter.post('/visitorOk', async (req, res, next) => {
 
 	const hours = Number(today.getHours()); // 시
 	// const hours = 16;
-
+	let ment;
 	const sql = "INSERT INTO attendance (ip, address_data, team_name, employee_names, employee_nums, tels, reations, bank_name, bank_number, bank_admin) values ?"
 	await mysqlWrite.query(sql, [[[ip, address_data, team_name, employee_names, employee_nums, tels, reations, bank_name, bank_number, bank_admin]]])
 	if (hours >= 12 && hours <= 14)  {
