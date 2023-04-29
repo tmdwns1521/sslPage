@@ -67,7 +67,7 @@ visitorRouter.post('/visitor', async (req, res, next) => {
 		const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 		const is_ip = await mysqlRead.query('SELECT * FROM attendance WHERE ip = ?', ip)
 		// if (is_ip[0].length > 0) {
-		if (is_ip[0].length >= 0) {
+		if (is_ip[0].length < 0) {
 			return res.status(201).json({"result" : false});
 		}else {
 			try {
