@@ -5,21 +5,21 @@ import mysql from 'mysql2/promise';
 
 
 const mysqlWrite = mysql.createPool({
-    host: 'financialral.sldb.iwinv.net',
+    host: '127.0.0.1',
     user: 'root',
-    password: '3QYdhT5B71qv',
-    database: 'database',
+    password: 'DHtmdwns1674@',
+    database: 'new_schema',
     dateStrings: true,
-	multipleStatements: true,
+		multipleStatements: true,
     connectTimeout: 5000,
     connectionLimit: 180 //default 10
 })
 
 const mysqlRead = mysql.createPool({
-    host: 'financialral.sldb.iwinv.net',
+    host: '127.0.0.1',
     user: 'root',
-    password: '3QYdhT5B71qv',
-    database: 'database',
+    password: 'DHtmdwns1674@',
+    database: 'new_schema',
     dateStrings: true,
     connectTimeout: 5000,
     connectionLimit: 180 //default 10

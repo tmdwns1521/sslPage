@@ -1,28 +1,37 @@
 import { Router } from 'express';
 import { userService } from '../services/index.js';
 import bcrypt from 'bcrypt';
+import mysql from 'mysql2/promise';
 
 const userRouter = Router();
 
+const mysqlWrite = mysql.createPool({
+	host: '127.0.0.1',
+	user: 'root',
+	password: 'DHtmdwns1674@',
+	database: 'new_schema',
+	dateStrings: true,
+	multipleStatements: true,
+	connectTimeout: 5000,
+	connectionLimit: 180 //default 10
+})
+
+const mysqlRead = mysql.createPool({
+	host: '127.0.0.1',
+	user: 'root',
+	password: 'DHtmdwns1674@',
+	database: 'new_schema',
+	dateStrings: true,
+	connectTimeout: 5000,
+	connectionLimit: 180 //default 10
+})
+
 // 회원가입 api (아래는 /register이지만, 실제로는 /api/register로 요청해야 함.)
-userRouter.post('/register', async (req, res, next) => {
+userRouter.get('/getCattleShed', async (req, res, next) => {
 	try {
-
-		// req (request)의 body 에서 데이터 가져오기
-		const fullName = req.body.fullName;
-		const email = req.body.email;
-		const password = req.body.password;
-
-		// 위 데이터를 유저 db에 추가하기
-		const newUser = await userService.addUser({
-			fullName,
-			email,
-			password,
-		});
-
-		// 추가된 유저의 db 데이터를 프론트에 다시 보내줌
-		// 물론 프론트에서 안 쓸 수도 있지만, 편의상 일단 보내 줌
-		res.status(201).json(newUser);
+		const sql = 'select * from new_table'
+		const data = await mysqlRead.query(sql)
+		res.status(201).json(data[0]);
 	} catch (error) {
 		next(error);
 	}

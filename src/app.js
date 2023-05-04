@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // html, css, js 라우팅
-app.use(viewsRouter);
+// app.use(viewsRouter);
 
 app.use('/api', consultingRouter);
 app.use('/api', userRouter);
