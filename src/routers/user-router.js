@@ -37,19 +37,25 @@ userRouter.get('/getCattleShed', async (req, res, next) => {
 	}
 });
 
-// 로그인 api (아래는 /login 이지만, 실제로는 /api/login로 요청해야 함.)
-userRouter.post('/login', async function (req, res, next) {
+// 새로운 가축
+userRouter.post('/createNew', async function (req, res, next) {
 	try {
+		const { entity_identification_number, gender, parent_entity_identification_number, birth, report_date, modification_date, appraise, delivery_day } = req.body;
+		const sql = "insert into new_table (entity_identification_number, gender, parent_entity_identification_number, birth, report_date, modification_date, appraise, delivery_day) values ?"
+		const data = await mysqlWrite.query(sql, [[[entity_identification_number, gender, parent_entity_identification_number, birth, report_date, modification_date, appraise, delivery_day]]])
+		res.status(200).json(data);
+	} catch (error) {
+		next(error);
+	}
+});
 
-		// req (request) 에서 데이터 가져오기
-		const email = req.body.id;
-		const password = req.body.pw;
-
-		// 로그인 진행 (로그인 성공 시 jwt 토큰을 프론트에 보내 줌)
-		const userToken = await userService.getUserToken({ email, password });
-
-		// jwt 토큰을 프론트에 보냄 (jwt 토큰은, 문자열임)
-		res.status(200).json(userToken);
+// 업데이트 가축
+userRouter.post('/updateNew', async function (req, res, next) {
+	try {
+		const { id, entity_identification_number, gender, parent_entity_identification_number, birth, report_date, modification_date, appraise, delivery_day } = req.body;
+		const sql = "update new_table set entity_identification_number = ?, gender = ?, parent_entity_identification_number = ?, birth = ?, report_date = ?, modification_date = ?, appraise = ?, delivery_day = ? where id = ?"
+		const data = await mysqlWrite.query(sql, [entity_identification_number, gender, parent_entity_identification_number, birth, report_date, modification_date, appraise, delivery_day, id])
+		res.status(200).json(data);
 	} catch (error) {
 		next(error);
 	}
