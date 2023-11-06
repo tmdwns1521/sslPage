@@ -5,10 +5,10 @@ import mysql from 'mysql2/promise';
 
 
 const mysqlWrite = mysql.createPool({
-    host: '127.0.0.1',
+    host: 'financical.sldb.iwinv.net',
     user: 'root',
-    password: 'DHtmdwns1674@',
-    database: 'new_schema',
+    password: 'hHuF71CM4xs9',
+    database: 'attendance_check',
     dateStrings: true,
 		multipleStatements: true,
     connectTimeout: 5000,
@@ -16,10 +16,10 @@ const mysqlWrite = mysql.createPool({
 })
 
 const mysqlRead = mysql.createPool({
-    host: '127.0.0.1',
+    host: 'financical.sldb.iwinv.net',
     user: 'root',
-    password: 'DHtmdwns1674@',
-    database: 'new_schema',
+    password: 'hHuF71CM4xs9',
+    database: 'attendance_check',
     dateStrings: true,
     connectTimeout: 5000,
     connectionLimit: 180 //default 10
@@ -36,17 +36,15 @@ const visitorRouter = Router();
 // 회원가입 api (아래는 /register이지만, 실제로는 /api/register로 요청해야 함.)
 visitorRouter.post('/visitor', async (req, res, next) => {
 	const today = new Date();
-	const twelve = 12;
-	const forteen = 14;
-	const sixteen = 15;
-	const seventeen = 16;
-	const thirty = 30
-	const twenty = 20
+	const time_query = await mysqlRead.query('SELECT * FROM times');
+	const { twelve, forteen, sixteen, seventeen, thirty, twenty} = time_query[0][0];
 
 	let ment = 'no';
 
 	const hours = Number(today.getHours()); // 시
 	const minutes = Number(today.getMinutes());  // 분
+	console.log(hours);
+	console.log(minutes);
 	
 	// test
 	// const hours = 12;

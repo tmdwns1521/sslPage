@@ -1,6 +1,6 @@
 module.exports = {
-    host     : 'financialral.sldb.iwinv.net',
+    host     : 'financical.sldb.iwinv.net',
     user     : 'root',
-    password : '3QYdhT5B71qv',
+    password : 'hHuF71CM4xs9',
     // database : 'my_db'
   };
