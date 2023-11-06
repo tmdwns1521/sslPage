@@ -154,7 +154,7 @@ submit_button.addEventListener("click", async (e) => {
 		bank_number,
 		bank_admin
 	}
-	const postData = await Api.post('http://localhost:3001/api/visitor', data);
+	const postData = await Api.post(`${process.env.API_URL}/api/visitor`, data);
 	// const postData = await Api.post('http://localhost:80/api/visitor', data);
 	if (postData.result === false) {
 		alert('이미 등록된 기기입니다.');
@@ -193,7 +193,7 @@ submit_button.addEventListener("click", async (e) => {
 			bank_number: bnb,
 			bank_admin: ba,
 		}
-		const postDataOk = await Api.post('http://localhost:3001/api/visitorOk', newData);
+		const postDataOk = await Api.post(`${process.env.API_URL}/api/visitorOk`, newData);
 		// const postDataOk = await Api.post('http://localhost:80/api/visitorOk', newData);
 		const ment = postDataOk.result;
 		alert(ment);
