@@ -82,17 +82,17 @@ const employee_num = document.getElementById('employee_num');
 const tel = document.getElementById('tel');
 
 
-// const teamo = document.getElementById('team');
+const teamo = document.getElementById('team');
 // const temass = document.getElementsByName('name');
-// let team_name = '';
-// teamo.addEventListener("change", (e) => {
-// 	team_name = e.target.value;
-// 	if (e.target.value === '수협중앙회지부' || e.target.value === '신한은행지부') {
-// 		bank.style.display = 'block';
-// 	} else {
-// 		bank.style.display = 'none';
-// 	}
-// });
+let team_name = '';
+teamo.addEventListener("change", (e) => {
+	team_name = e.target.value;
+	// if (e.target.value === '수협중앙회지부' || e.target.value === '신한은행지부') {
+	// 	bank.style.display = 'block';
+	// } else {
+	// 	bank.style.display = 'none';
+	// }
+});
 
 let reations = ''
 
