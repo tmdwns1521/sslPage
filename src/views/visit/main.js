@@ -115,7 +115,6 @@ family.addEventListener("click", (e) => {
 
 
 submit_button.addEventListener("click", async (e) => {
-	console.log(process.argv);
 	e.preventDefault;
 	const employee_names = employee_name.value;
 	const employee_nums = employee_num.value;
