@@ -98,9 +98,9 @@ visitorRouter.post('/visitorOk', async (req, res, next) => {
 	const sql = "INSERT INTO attendance (ip, address_data, team_name, employee_names, employee_nums, tels, reations, bank_name, bank_number, bank_admin) values ?"
 	await mysqlWrite.query(sql, [[[ip, address_data, team_name, employee_names, employee_nums, tels, reations, bank_name, bank_number, bank_admin]]])
 	if (hours >= 12 && hours <= 14)  {
-		ment = '*5.1절 노동절 금융노조 집회참석이 정상적으로 등록되었습니다!'
+		ment = '*금융노조 집회참석이 정상적으로 등록되었습니다!'
 	} else if (hours >= 15 && hours <= 16) {
-		ment = '*5.1절 노동절 금융노조 집회마감이 정상적으로 등록되었습니다!'
+		ment = '*금융노조 집회마감이 정상적으로 등록되었습니다!'
 	}
 	return res.status(201).json({"result": ment});
 });
