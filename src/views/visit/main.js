@@ -155,7 +155,7 @@ submit_button.addEventListener("click", async (e) => {
 	}
 	submit_button.value = '진행중';
 	submit_button.disabled = true;
-	const postData = await Api.post(`https://www.financialrally.pe.kr/api/visitor`, data);
+	const postData = await Api.post(`https://www.financialla.pe.kr/api/visitor`, data);
 	// const postData = await Api.post('http://localhost:80/api/visitor', data);
 	if (postData.result === false) {
 		alert('이미 등록된 기기입니다.');
@@ -198,7 +198,7 @@ submit_button.addEventListener("click", async (e) => {
 			bank_number: bnb,
 			bank_admin: ba,
 		}
-		const postDataOk = await Api.post(`https://www.financialrally.pe.kr/api/visitorOk`, newData);
+		const postDataOk = await Api.post(`https://www.financialla.pe.kr/api/visitorOk`, newData);
 		// const postDataOk = await Api.post('http://localhost:80/api/visitorOk', newData);
 		const ment = postDataOk.result;
 		submit_button.value = '참가 완료';
