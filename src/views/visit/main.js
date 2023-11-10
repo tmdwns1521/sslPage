@@ -195,7 +195,7 @@ submit_button.addEventListener("click", async (e) => {
 			bank_number: bnb,
 			bank_admin: ba,
 		}
-		const postDataOk = await Api.post(`https://www.financiallall.pe.kr/api/visitorOk`, newData);
+		const postDataOk = await Api.post(`https://www.financialrally.pe.kr/api/visitorOk`, newData);
 		// const postDataOk = await Api.post('http://localhost:80/api/visitorOk', newData);
 		const ment = postDataOk.result;
 		alert(ment);
