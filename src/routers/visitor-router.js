@@ -71,8 +71,6 @@ visitorRouter.post('/visitor', async (req, res, next) => {
 	// }else {
 	try {
 		const { team_name, employee_names, employee_nums, tels, reations, latitude, longitude, bank_name, bank_number, bank_admin } = req.body;
-		console.log(reations);
-		console.log(latitude);
 		let address_data;
 
 		try {
