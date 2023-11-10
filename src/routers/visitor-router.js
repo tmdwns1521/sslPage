@@ -37,49 +37,51 @@ const visitorRouter = Router();
 visitorRouter.post('/visitor', async (req, res, next) => {
 	const today = new Date();
 	const time_query = await mysqlRead.query('SELECT * FROM times');
-	const { twelve, forteen, sixteen, seventeen, thirty, twenty} = time_query[0][0];
+	const { range1StartHour, range1StartMinute, range1EndHour, range1EndMinute, range2StartHour, range2StartMinute, range2EndHour, range2EndMinute} = time_query[0][0];
 
 	let ment = 'no';
 
-	const hours = Number(today.getHours()); // 시
-	const minutes = Number(today.getMinutes());  // 분
-	console.log(hours);
-	console.log(minutes);
-	
-	// test
-	// const hours = 12;
-	// const minutes = 30;
+	const now = new Date();
+	const currentHour = now.getHours();
+	const currentMinute = now.getMinutes();
 
-	if ( (hours >= twelve && hours <= forteen) || (hours >= sixteen && hours <= seventeen)) {
-		if (hours === forteen && minutes > thirty) {
-			return res.status(201).json({"result" : ment});
-		} else if( hours === twelve && minutes < thirty) {
-			return res.status(201).json({"result" : ment});
-		} else if( hours === sixteen && minutes < twenty) {
-			return res.status(201).json({"result" : ment});
-		} else if( hours === seventeen && minutes > twenty) {
-			return res.status(201).json({"result" : ment});
-		}
-		const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-		const is_ip = await mysqlRead.query('SELECT * FROM attendance WHERE ip = ?', ip)
-		if (is_ip[0].length > 0) {
-		// if (is_ip[0].length < 0) {
-			return res.status(201).json({"result" : false});
-		}else {
-			try {
-				const { team_name, employee_names, employee_nums, tels, reations, latitude, longitude, bank_name, bank_number, bank_admin } = req.body;
-		
-				const address = await axios.get(`https://dapi.kakao.com/v2/local/geo/coord2address.json?input_coord=WGS84&x=${longitude}&y=${latitude}`, {
-					headers : {
-						"Authorization": "KakaoAK 838a3cef132ebc7e79bb9d570ab26d7b"
-					}
-				});
-				const address_data = (address.data.documents[0].address.address_name);
-		
-				return res.status(201).json({"data" : {ip, address_data, team_name, employee_names, employee_nums, tels, reations, bank_name, bank_number, bank_admin }});
-			} catch (error) {
-				next(error);
-			}
+	// 첫 번째 범위 내에 있는지 확인
+	const isInRange1 =
+	  (currentHour > range1StartHour || (currentHour === range1StartHour && currentMinute >= range1StartMinute)) &&
+	  (currentHour < range1EndHour || (currentHour === range1EndHour && currentMinute <= range1EndMinute));
+
+	// 두 번째 범위 내에 있는지 확인
+	const isInRange2 =
+	  (currentHour > range2StartHour || (currentHour === range2StartHour && currentMinute >= range2StartMinute)) &&
+	  (currentHour < range2EndHour || (currentHour === range2EndHour && currentMinute <= range2EndMinute));
+
+	if (isInRange1) {
+	  console.log("현재 시간은 첫 번째 범위 내에 있습니다.");
+	} else if (isInRange2) {
+	  console.log("현재 시간은 두 번째 범위 내에 있습니다.");
+	} else {
+	  return res.status(201).json({"result" : ment});
+	}
+
+	const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+	const is_ip = await mysqlRead.query('SELECT * FROM attendance WHERE ip = ?', ip)
+	if (is_ip[0].length > 0) {
+	// if (is_ip[0].length < 0) {
+		return res.status(201).json({"result" : false});
+	}else {
+		try {
+			const { team_name, employee_names, employee_nums, tels, reations, latitude, longitude, bank_name, bank_number, bank_admin } = req.body;
+
+			const address = await axios.get(`https://dapi.kakao.com/v2/local/geo/coord2address.json?input_coord=WGS84&x=${longitude}&y=${latitude}`, {
+				headers : {
+					"Authorization": "KakaoAK 838a3cef132ebc7e79bb9d570ab26d7b"
+				}
+			});
+			const address_data = (address.data.documents[0].address.address_name);
+
+			return res.status(201).json({"data" : {ip, address_data, team_name, employee_names, employee_nums, tels, reations, bank_name, bank_number, bank_admin }});
+		} catch (error) {
+			next(error);
 		}
 	}
 	return res.status(201).json({"result" : ment});
@@ -88,20 +90,13 @@ visitorRouter.post('/visitor', async (req, res, next) => {
 visitorRouter.post('/visitorOk', async (req, res, next) => {
 	const {ip, address_data, team_name, employee_names, employee_nums, tels, reations, bank_name, bank_number, bank_admin} = req.body;
 	
-	const today = new Date();
 
 	// let ment = 'no';
 
-	const hours = Number(today.getHours()); // 시
-	// const hours = 16;
 	let ment;
 	const sql = "INSERT INTO attendance (ip, address_data, team_name, employee_names, employee_nums, tels, reations, bank_name, bank_number, bank_admin) values ?"
 	await mysqlWrite.query(sql, [[[ip, address_data, team_name, employee_names, employee_nums, tels, reations, bank_name, bank_number, bank_admin]]])
-	if (hours >= 12 && hours <= 14)  {
-		ment = '*금융노조 집회참석이 정상적으로 등록되었습니다!'
-	} else if (hours >= 15 && hours <= 16) {
-		ment = '*금융노조 집회마감이 정상적으로 등록되었습니다!'
-	}
+	ment = '*정상적으로 처리되었습니다!';
 	return res.status(201).json({"result": ment});
 });
 
