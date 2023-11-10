@@ -160,9 +160,13 @@ submit_button.addEventListener("click", async (e) => {
 	// const postData = await Api.post('http://localhost:80/api/visitor', data);
 	if (postData.result === false) {
 		alert('이미 등록된 기기입니다.');
+		submit_button.value = '참가 완료';
+		submit_button.disabled = false;
 		return false;
 	} else if (postData.result === 'no') {
 		alert('집회 출석 시간이 아니거나, GPS가 꺼져 있는 상태입니다.');
+		submit_button.value = '참가 완료';
+		submit_button.disabled = false;
 		return false;
 	}
 	const tn = postData.data.team_name;
@@ -198,6 +202,8 @@ submit_button.addEventListener("click", async (e) => {
 		const postDataOk = await Api.post(`https://www.financiallall.pe.kr/api/visitorOk`, newData);
 		// const postDataOk = await Api.post('http://localhost:80/api/visitorOk', newData);
 		const ment = postDataOk.result;
+		submit_button.value = '참가 완료';
+		submit_button.disabled = false;
 		alert(ment);
 		location.reload()
 	}
