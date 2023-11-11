@@ -100,8 +100,17 @@ visitorRouter.post('/visitorOk', async (req, res, next) => {
 	// let ment = 'no';
 
 	let ment;
-	const sql = "INSERT INTO attendance (ip, address_data, team_name, employee_names, employee_nums, tels, reations, bank_name, bank_number, bank_admin) values ?"
-	await mysqlWrite.query(sql, [[[ip, address_data, team_name, employee_names, employee_nums, tels, reations, bank_name, bank_number, bank_admin]]])
+	const today = new Date();
+
+	// 날짜 부분을 원하는 형식으로 포맷
+	const formattedDate = `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today.getDate().toString().padStart(2, '0')}`;
+
+	// 시간 부분을 현재 시간으로 설정
+	const formattedDateTime = `${formattedDate} ${today.getHours().toString().padStart(2, '0')}:${today.getMinutes().toString().padStart(2, '0')}:${today.getSeconds().toString().padStart(2, '0')}`;
+
+	console.log(formattedDateTime);
+	const sql = "INSERT INTO attendance (ip, address_data, team_name, employee_names, employee_nums, tels, reations, bank_name, bank_number, bank_admin, createAT) values ?"
+	await mysqlWrite.query(sql, [[[ip, address_data, team_name, employee_names, employee_nums, tels, reations, bank_name, bank_number, bank_admin, formattedDateTime]]])
 	ment = '*정상적으로 처리되었습니다!';
 	return res.status(201).json({"result": ment});
 });
